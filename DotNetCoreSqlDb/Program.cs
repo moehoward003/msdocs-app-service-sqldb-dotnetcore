@@ -23,7 +23,7 @@ namespace DotNetCoreSqlDb
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
-                    logging.AddConsole();
+                   // logging.AddConsole();
                     logging.AddAzureWebAppDiagnostics();
                     logging.AddApplicationInsights();// (options) => { 
                       //  options.ConnectionString

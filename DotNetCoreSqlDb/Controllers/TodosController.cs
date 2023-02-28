@@ -45,12 +45,17 @@ namespace DotNetCoreSqlDb.Controllers
                 return NotFound();
             }
 
-            var todo = await _context.Todo
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var todo = await _context.Todo.FirstOrDefaultAsync(m => m.ID == id);
             if (todo == null)
             {
                 return NotFound();
             }
+
+            todo.ViewCount++;
+
+            _context.Update(todo);
+            await _context.SaveChangesAsync();
+
 
             return View(todo);
         }
@@ -58,7 +63,9 @@ namespace DotNetCoreSqlDb.Controllers
         // GET: Todos/Create
         public IActionResult Create()
         {
-            return View();
+            Todo myTodo = new Todo();
+            myTodo.CreatedDate = DateTime.Now;
+            return View(myTodo);
         }
 
         // POST: Todos/Create
@@ -98,7 +105,7 @@ namespace DotNetCoreSqlDb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,CreatedDate")] Todo todo)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,ViewCount,CreatedDate")] Todo todo)
         {
             if (id != todo.ID)
             {

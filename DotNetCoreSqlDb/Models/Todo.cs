@@ -8,6 +8,8 @@ namespace DotNetCoreSqlDb.Models
         public int ID { get; set; }
         public string Description { get; set; }
 
+        public int ViewCount { get; set; }
+
         [Display(Name = "Created Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

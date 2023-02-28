@@ -5,6 +5,9 @@
 }
 
 <h1>Index</h1>
+@{
+    Environment.GetEnvironmentVariable("BUILD_NUMBER");
+}
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,6 +17,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ViewCount)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
@@ -26,6 +32,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewCount)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)

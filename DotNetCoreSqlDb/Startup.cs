@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using DotNetCoreSqlDb.Models;
+using Microsoft.Extensions.Logging;
 
 namespace DotNetCoreSqlDb
 {
@@ -30,8 +31,24 @@ namespace DotNetCoreSqlDb
             services.AddControllersWithViews();
             services.AddDbContext<MyDatabaseContext>(options =>
                         options.UseMySQL(Configuration.GetConnectionString("MyDbConnection")));
-           // services.AddDbContext<MyDatabaseContext>(options =>
-             //     options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+
+            //var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
+
+            //aiOptions.EnableHeartbeat = true;
+
+            //services.Configure<ILogger>((options) => {
+            //    services.AddApplicationInsightsTelemetry(aiOptions);
+
+            // });
+
+
+            //Host.CreateDefaultBuilder().ConfigureLogging((context, builder) =>
+            //{
+            //    builder.AddApplicationInsights(
+            //        configureTelemetryConfiguration: (config) => config.ConnectionString = context.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"],
+            //        configureApplicationInsightsLoggerOptions: (options) => { options. }
+            //    );
+            //}
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

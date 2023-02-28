@@ -22,7 +22,13 @@ namespace DotNetCoreSqlDb
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>
                 {
+                    logging.ClearProviders();
+                    logging.AddConsole();
                     logging.AddAzureWebAppDiagnostics();
+                    logging.AddApplicationInsights();// (options) => { 
+                      //  options.ConnectionString
+                  //  });
+                     //configureTelemetryConfiguration: (config) => config.ConnectionString = context.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"],
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

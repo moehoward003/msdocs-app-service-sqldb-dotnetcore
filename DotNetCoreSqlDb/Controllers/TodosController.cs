@@ -6,16 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DotNetCoreSqlDb.Models;
+using Microsoft.Extensions.Logging;
 
 namespace DotNetCoreSqlDb.Controllers
 {
     public class TodosController : Controller
     {
         private readonly MyDatabaseContext _context;
+        private readonly ILogger<TodosController> _logger;
 
-        public TodosController(MyDatabaseContext context)
+        public TodosController(MyDatabaseContext context, ILogger<TodosController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Todos
@@ -26,7 +29,9 @@ namespace DotNetCoreSqlDb.Controllers
             // This allows the home page to load if migrations have not been run yet.
             try
             {
+                _logger.LogInformation("Getting Todos...3");
                 todos = await _context.Todo.ToListAsync();
+                _logger.LogInformation("Got [{TodoItems}] Todo(s) item(s).", todos.Count);
             }
             catch (Exception e)
             {

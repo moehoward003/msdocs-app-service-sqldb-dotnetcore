@@ -15,9 +15,9 @@ namespace DotNetCoreSqlDb.Models
 
         public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseMySQL("Server=msdocs-core-mysql-001-server.mysql.database.azure.com;UserID = mysqllogin;Password=!QAZxsw2;Database=MyDatabase;"
-                );
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //    => optionsBuilder.UseMySQL("Server=msdocs-core-mysql-001-server.mysql.database.azure.com;UserID = mysqllogin;Password=!QAZxsw2;Database=MyDatabase;"
+        //        );
 
 
         //optionsBuilder.UseMySQL("Server=msdocs-core-mysql-001-server.mysql.database.azure.com;UserID = mysqllogin;Password=!QAZxsw2;Database=MyDatabase;");

@@ -32,14 +32,14 @@ namespace DotNetCoreSqlDb
             services.AddDbContext<MyDatabaseContext>(options =>
                         options.UseMySQL(Configuration.GetConnectionString("MyDbConnection")));
 
-            //var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
+          /*  var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
 
-            //aiOptions.EnableHeartbeat = true;
+            aiOptions.EnableHeartbeat = true;
 
-            //services.Configure<ILogger>((options) => {
-            //    services.AddApplicationInsightsTelemetry(aiOptions);
+            services.Configure<ILogger>((options) => {
+             services.AddApplicationInsightsTelemetry(aiOptions);
 
-            // });
+             });*/
 
 
             //Host.CreateDefaultBuilder().ConfigureLogging((context, builder) =>

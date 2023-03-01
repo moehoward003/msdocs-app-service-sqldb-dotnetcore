@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DotNetCoreSqlDb.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.ApplicationInsights;
 
 namespace DotNetCoreSqlDb.Controllers
 {
@@ -29,7 +30,7 @@ namespace DotNetCoreSqlDb.Controllers
             // This allows the home page to load if migrations have not been run yet.
             try
             {
-                _logger.LogInformation("Getting Todos...3");
+                _logger.LogInformation("Getting Todos from database...");
                 todos = await _context.Todo.ToListAsync();
                 _logger.LogInformation("Got [{TodoItems}] Todo(s) item(s).", todos.Count);
             }

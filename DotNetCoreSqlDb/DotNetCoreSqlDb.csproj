@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/9e95f10e-e12a-486a-824f-af4c96a92d16/resourceGroups/myResourceGroup/providers/microsoft.insights/components/msdocs-core-mysql</ApplicationInsightsResourceId>
+    <UserSecretsId>d2633a60-283f-49f3-8669-ce283569189b</UserSecretsId>
   </PropertyGroup>
 
 

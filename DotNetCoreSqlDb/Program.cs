@@ -30,12 +30,12 @@ namespace DotNetCoreSqlDb
                     //logging.AddApplicationInsights();
 
                     logging.AddApplicationInsights(configureTelemetryConfiguration: (config) => {
-
-                        var instrumentationKey = string.Format("InstrumentationKey={0}", context.Configuration.GetValue<string>("ApplicationInsights:InstrumentationKey"));
-                        config.ConnectionString = instrumentationKey;
+                            var instrumentationKey = string.Format("InstrumentationKey={0}", context.Configuration.GetValue<string>("ApplicationInsights:InstrumentationKey"));
+                            config.ConnectionString = instrumentationKey;
                         },
-                                             configureApplicationInsightsLoggerOptions: (options) => { }
-                                         );
+                            configureApplicationInsightsLoggerOptions: (options) => { 
+                            }
+                    );
 
                     // Capture all log-level entries from Startup
                     logging.AddFilter<ApplicationInsightsLoggerProvider>(typeof(Startup).FullName, LogLevel.Trace);

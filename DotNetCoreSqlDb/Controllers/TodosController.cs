@@ -9,6 +9,7 @@ using DotNetCoreSqlDb.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.ApplicationInsights;
 
+
 namespace DotNetCoreSqlDb.Controllers
 {
     public class TodosController : Controller
@@ -52,6 +53,8 @@ namespace DotNetCoreSqlDb.Controllers
             }
 
             var todo = await _context.Todo.FirstOrDefaultAsync(m => m.ID == id);
+            //var todo = await _context.Todo.SingleOrDefaultAsync(m => m.ID == id);
+
             if (todo == null)
             {
                 return NotFound();
@@ -61,7 +64,6 @@ namespace DotNetCoreSqlDb.Controllers
 
             _context.Update(todo);
             await _context.SaveChangesAsync();
-
 
             return View(todo);
         }
@@ -98,7 +100,7 @@ namespace DotNetCoreSqlDb.Controllers
                 return NotFound();
             }
 
-            var todo = await _context.Todo.FindAsync(id);
+            var todo = await _context.Todo.FirstOrDefaultAsync(x => x.ID == id);
             if (todo == null)
             {
                 return NotFound();
@@ -164,7 +166,7 @@ namespace DotNetCoreSqlDb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var todo = await _context.Todo.FindAsync(id);
+            var todo = await _context.Todo.FirstOrDefaultAsync(x => x.ID == id);
             _context.Todo.Remove(todo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

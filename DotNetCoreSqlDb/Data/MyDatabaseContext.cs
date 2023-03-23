@@ -1,31 +1,22 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using System.Threading;
 
 namespace DotNetCoreSqlDb.Models
 {
-    public partial class MyDatabaseContext : DbContext
+    public interface IDatabaseContext
     {
-        public MyDatabaseContext (DbContextOptions<MyDatabaseContext> options)  : base(options)
+        DbSet<Todo> Todo { get; set; }
+     }
+
+    public partial class MyDatabaseContext : Microsoft.EntityFrameworkCore.DbContext, IDatabaseContext
+    {
+        public MyDatabaseContext(DbContextOptions<MyDatabaseContext> options) : base(options)
+       // public MyDatabaseContext() : base()
         {
 
         }
-
-        public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //    => optionsBuilder.UseMySQL("Server=msdocs-core-mysql-001-server.mysql.database.azure.com;UserID = mysqllogin;Password=!QAZxsw2;Database=MyDatabase;"
-        //        );
-
-
-        //optionsBuilder.UseMySQL("Server=msdocs-core-mysql-001-server.mysql.database.azure.com;UserID = mysqllogin;Password=!QAZxsw2;Database=MyDatabase;");
-            //optionsBuilder.UseCosmos("AccountEndpoint=https://msdocs-core-sql-002-server.documents.azure.com:443/;AccountKey=JPFhH1gcByFLhT2PZMujYe493axPV0psUYkvVV0KwAjyzdEBFe2SprO0WDME4InEj90Ix6mRJXREACDbNDBqCA==", "msdocs-core-sql-002-database");
-            //optionsBuilder.UseCosmos(Configuration.GetConnectionString("MyDbConnection"), "MyDatabase");
-            //optionsBuilder.UseCosmos("https://msdocs-core-sql-002-server.documents.azure.com",
-            //   "JPFhH1gcByFLhT2PZMujYe493axPV0psUYkvVV0KwAjyzdEBFe2SprO0WDME4InEj90Ix6mRJXREACDbNDBqCA==",
-            //    "msdocs-core-sql-002-database");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,7 +36,9 @@ namespace DotNetCoreSqlDb.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        public DbSet<Efmigrationshistory> Efmigrationshistories { get; set; } = null!;
+        public virtual DbSet<Todo> Todo { get; set; } = null!;
 
-        public DbSet<DotNetCoreSqlDb.Models.Todo> Todo { get; set; }
     }
+
 }
